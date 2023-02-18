@@ -1,0 +1,16 @@
+
+server:
+  port: 5017
+spring:
+  application:
+    name: weshopify-brands-service
+  data:
+    mongodb:
+      uri: 'mongodb://${DB_HOST:localhost}:${DB_PORT:27017}/WESHOPIFY-BRANDS-SERVICE'
+    redis:
+      host: '${REDIS_HOST:localhost}'
+      port: '${REDIS_PORT:6379}'
+# swagger-ui custom path
+springdoc:
+  swagger-ui:
+    path: /swagger-ui.html
