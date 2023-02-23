@@ -1,27 +1,29 @@
 package com.weshopifyplatform.model;
 
+import com.weshopifyplatform.bean.CategoryBean;
 import lombok.*;
 import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.index.Indexed;
 import org.springframework.data.mongodb.core.mapping.Document;
-import org.springframework.data.mongodb.core.mapping.MongoId;
 
 import java.io.Serial;
 import java.io.Serializable;
 import java.util.Set;
-@Document("brands")
+@Document(collection = "brands")
 @Data
-@Builder(toBuilder = true)
 @AllArgsConstructor
+@NoArgsConstructor
 public class Brands implements Serializable {
     @Serial
     private static final long serialVersionUID = 3178975107325835060L;
 
     @Id
-    private int id;
+    private String id;
 
+    @Indexed(unique = true)
     private String name;
     private String logoPath;
-    private Set<String> categories;
+    private Set<CategoryBean> categories;
 
 
 

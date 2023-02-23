@@ -6,15 +6,15 @@ import java.util.List;
 
 public interface BrandsService {
 
-    public BrandsBean createBrands(BrandsBean brandsBean);
-    public BrandsBean updateBrands(BrandsBean brandsBean);
+    BrandsBean createBrands(BrandsBean brandsBean);
+    BrandsBean updateBrands(BrandsBean brandsBean);
 
-    public List<BrandsBean> findAllBrands();
+    List<BrandsBean> findAllBrands();
 
-    public BrandsBean findBrandsById(int id);
+    BrandsBean findBrandsById(String id);
 
-    public void deleteBrandsById(int id);
+    void deleteBrandsById(String id);
 
 
-
+    void deleteAllBrands();
 }

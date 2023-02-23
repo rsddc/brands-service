@@ -6,19 +6,19 @@ import lombok.NoArgsConstructor;
 
 import java.io.Serial;
 import java.io.Serializable;
-import java.util.Set;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class BrandsBean implements Serializable {
-
+public class CategoryBean implements Serializable {
 
 
     @Serial
-    private static final long serialVersionUID = -717245561605299015L;
-    private String id;
+    private static final long serialVersionUID = 5845357022681520824L;
+    private int id;
     private String name;
-    private String logoPath;
-    private Set<CategoryBean> categories;
+    private String alias;
+    private String imagePath;
+    private boolean enabled;
+    private int parent;
 
 }
