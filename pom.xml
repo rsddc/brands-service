@@ -16,9 +16,15 @@
 	<properties>
 		<java.version>17</java.version>
 		<springdoc.version>2.0.2</springdoc.version>
-		<spring-cloud.version>2020.0.6</spring-cloud.version>
+		<spring-cloud.version>2022.0.1</spring-cloud.version>
 	</properties>
 	<dependencies>
+		<!-- https://mvnrepository.com/artifact/org.springframework.security/spring-security-jwt -->
+		<dependency>
+			<groupId>org.springframework.security</groupId>
+			<artifactId>spring-security-oauth2-resource-server</artifactId>
+		</dependency>
+		<!-- Thanks for using https://jar-download.com -->
 
 		<!-- https://mvnrepository.com/artifact/org.springframework.cloud/spring-cloud-starter-openfeign -->
 		<dependency>

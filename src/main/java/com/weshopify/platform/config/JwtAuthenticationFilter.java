@@ -1,4 +1,4 @@
-package com.weshopifyplatform.config;
+package com.weshopify.platform.config;
 
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;

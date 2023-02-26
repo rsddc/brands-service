@@ -1,8 +1,10 @@
-package com.weshopifyplatform.service;
+package com.weshopify.platform.service;
 
-import com.weshopifyplatform.bean.BrandsBean;
+import com.weshopify.platform.bean.CategoryBean;
+import com.weshopify.platform.bean.BrandsBean;
 
 import java.util.List;
+import java.util.Set;
 
 public interface BrandsService {
 
@@ -17,4 +19,6 @@ public interface BrandsService {
 
 
     void deleteAllBrands();
+
+    Set<CategoryBean> findCategoryById(BrandsBean brandsBean);
 }

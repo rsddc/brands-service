@@ -1,6 +1,6 @@
-package com.weshopifyplatform.model;
+package com.weshopify.platform.model;
 
-import com.weshopifyplatform.bean.CategoryBean;
+import com.weshopify.platform.bean.CategoryBean;
 import lombok.*;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.index.Indexed;
@@ -24,8 +24,5 @@ public class Brands implements Serializable {
     private String name;
     private String logoPath;
     private Set<CategoryBean> categories;
-
-
-
 
 }

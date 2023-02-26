@@ -1,6 +1,6 @@
-package com.weshopifyplatform.repo;
+package com.weshopify.platform.repo;
 
-import com.weshopifyplatform.model.Brands;
+import com.weshopify.platform.model.Brands;
 import org.springframework.data.mongodb.repository.MongoRepository;
 import org.springframework.stereotype.Repository;
 

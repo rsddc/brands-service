@@ -1,4 +1,4 @@
-package com.weshopifyplatform.bean;
+package com.weshopify.platform.bean;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;

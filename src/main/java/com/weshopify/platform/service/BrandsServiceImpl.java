@@ -1,11 +1,11 @@
-package com.weshopifyplatform.service;
+package com.weshopify.platform.service;
 
-import com.weshopifyplatform.bean.BrandsBean;
-import com.weshopifyplatform.bean.CategoryBean;
-import com.weshopifyplatform.exception.ApiException;
-import com.weshopifyplatform.model.Brands;
-import com.weshopifyplatform.outbound.CategoriesApiClient;
-import com.weshopifyplatform.repo.BrandsRepository;
+import com.weshopify.platform.bean.CategoryBean;
+import com.weshopify.platform.exception.ApiException;
+import com.weshopify.platform.outbound.CategoryFeignClient;
+import com.weshopify.platform.bean.BrandsBean;
+import com.weshopify.platform.model.Brands;
+import com.weshopify.platform.repo.BrandsRepository;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
@@ -13,7 +13,6 @@ import org.springframework.stereotype.Service;
 import org.springframework.util.CollectionUtils;
 
 import java.time.LocalDateTime;
-import java.time.chrono.ChronoLocalDateTime;
 import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
@@ -23,7 +22,7 @@ import java.util.stream.Collectors;
 @Slf4j
 public class BrandsServiceImpl implements BrandsService{
     private BrandsRepository brandsRepository;
-    private CategoriesApiClient categoriesApiClient;
+    private CategoryFeignClient categoryFeignClient;
      @Override
     public BrandsBean createBrands(BrandsBean brandsBean) {
         Brands brand = beanToEntityConvert(brandsBean);
@@ -74,6 +73,18 @@ public class BrandsServiceImpl implements BrandsService{
         brandsRepository.deleteAll();
     }
 
+    @Override
+    public Set<CategoryBean> findCategoryById(BrandsBean brandsBean) {
+
+
+        Set<CategoryBean> categoryBeans = brandsBean.getCategories().stream().
+                map(CategoryBean::getId).map(this.categoryFeignClient::findCategoryById).
+                filter(res -> res != null).map(res -> res.getBody()).collect(Collectors.toSet());
+        return categoryBeans;
+
+
+    }
+
     private BrandsBean entityToBeanConverter(Brands brands) {
 
         BrandsBean brandsBean = new BrandsBean();
@@ -87,7 +98,7 @@ public class BrandsServiceImpl implements BrandsService{
         Brands brands = new Brands();
         brands.setId(brandsBean.getId());
         brands.setName(brandsBean.getName());
-        brands.setCategories(brandsBean.getCategories());
+        brands.setCategories(findCategoryById(brandsBean));
         return brands;
     }
 }

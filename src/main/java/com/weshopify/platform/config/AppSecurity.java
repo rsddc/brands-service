@@ -1,4 +1,4 @@
-package com.weshopifyplatform.config;
+package com.weshopify.platform.config;
 
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;

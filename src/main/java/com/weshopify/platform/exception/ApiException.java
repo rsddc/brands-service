@@ -1,4 +1,4 @@
-package com.weshopifyplatform.exception;
+package com.weshopify.platform.exception;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;

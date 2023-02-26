@@ -1,4 +1,4 @@
-package com.weshopifyplatform.exception;
+package com.weshopify.platform.exception;
 
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ExceptionHandler;
