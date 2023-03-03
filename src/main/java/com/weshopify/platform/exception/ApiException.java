@@ -20,7 +20,6 @@ public class ApiException extends RuntimeException  {
     private static final long serialVersionUID = 7510316766190623476L;
     private String message;
     private int errorCode;
-
     private LocalDateTime timeStamp;
 
 }

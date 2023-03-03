@@ -1,5 +1,6 @@
 package com.weshopify.platform.config;
 
+import com.weshopify.platform.exception.ApiException;
 import jakarta.servlet.http.HttpServletRequest;
 import lombok.AllArgsConstructor;
 import org.springframework.data.redis.core.HashOperations;
@@ -16,6 +17,7 @@ import org.springframework.web.client.HttpClientErrorException;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 
 @Component
@@ -37,7 +39,10 @@ public class JwtAuthenticationService {
             String subject = getUserName(accessToken);
             List<GrantedAuthority> roles = getRoles(accessToken);
             authentication = new UsernamePasswordAuthenticationToken(subject, null, roles);
-        }
+        }else
+            throw new ApiException("Token has expired. Get a new token and try again later !! ",
+                    HttpStatus.BAD_REQUEST.value(), LocalDateTime.now());
+
         return authentication;
     }
 

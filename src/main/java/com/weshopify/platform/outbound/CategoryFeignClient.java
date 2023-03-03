@@ -30,7 +30,10 @@ import org.springframework.web.bind.annotation.PathVariable;
  *
  */
 
-@FeignClient(value = "CategoryFeignClient",url = "http://localhost:5016")
+//@FeignClient(value = "CategoryFeignClient",url = "http://localhost:5016")
+//session52-at 2:03:35. To call it via eureka service registry use service id in eureka as value
+//instead of url . also put the name attribute.
+@FeignClient(value = "WESHOPIFY-CATEGORY-SERVICE",name = "WESHOPIFY-CATEGORY-SERVICE")
 public interface CategoryFeignClient {
    @GetMapping("/categories/{id}")
    ResponseEntity<CategoryBean> findCategoryById(@PathVariable("id") int id);

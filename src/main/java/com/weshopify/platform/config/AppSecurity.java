@@ -1,5 +1,6 @@
 package com.weshopify.platform.config;
 
+import com.weshopify.platform.exception.FilterChainExceptionFilter;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -8,6 +9,7 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityCustomizer;
 import org.springframework.security.web.SecurityFilterChain;
+import org.springframework.security.web.authentication.logout.LogoutFilter;
 import org.springframework.security.web.authentication.www.BasicAuthenticationFilter;
 
 @Configuration
@@ -16,6 +18,8 @@ import org.springframework.security.web.authentication.www.BasicAuthenticationFi
 public class AppSecurity {
     @Autowired
     private JwtAuthenticationService jwtAuthenticationService;
+    @Autowired
+    FilterChainExceptionFilter filterChainExceptionFilter;
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
 
@@ -35,7 +39,8 @@ public class AppSecurity {
 
                         req.anyRequest().authenticated().and().csrf().disable().
                         addFilterBefore(new JwtAuthenticationFilter(jwtAuthenticationService),
-                                BasicAuthenticationFilter.class);
+                                BasicAuthenticationFilter.class).addFilterAfter(filterChainExceptionFilter,
+                                        LogoutFilter.class);
             } catch (Exception e) {
                 log.info("jwt filter not set successfully");
                 throw new RuntimeException(e);

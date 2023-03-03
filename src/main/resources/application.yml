@@ -17,7 +17,7 @@ springdoc:
 
 services:
   categories:
-    base-uri: '${CATEGORIES_BASE_URI:http://localhost:5016/categories/}'
+    base-uri: '${CATEGORIES_BASE_URI:http://localhost:5016/}'
 
 
 
